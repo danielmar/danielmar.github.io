@@ -1,28 +1,87 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Hi</title>
-    <style>
-      html, body, #wrapper {
-   height:100%;
-   width: 100%;
-   margin: 0;
-   padding: 0;
-   border: 0;
-}
-#wrapper td {
-   vertical-align: middle;
-   text-align: center;
-}
-    </style>
-  </head>
-
-  <body>
-    <table id="wrapper">
-      <tr>
-         <img src="http://data.whicdn.com/images/27519968/large.gif"/>
-      </tr>
-   </table>
-    
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <title>MARCO COOL</title>
+        <link href='https://fonts.googleapis.com/css?family=Delius+Unicase:700' rel='stylesheet' type='text/css'>
+        <style media="screen">
+        
+            html, body {
+                height: 100%;
+                position: static;
+                overflow: hidden;
+                margin: 0;
+            }
+            
+            #main {
+                display: table;
+                text-align: center;
+                height: 90%;
+                width: 100%;
+            }
+            
+            h1 {
+                display:table-cell;
+                vertical-align: middle;
+                font-size: 82px;
+                font-family: 'Delius Unicase', cursive;
+                font-weight: bold;
+            }
+            
+            .nudge_size {
+                -webkit-animation: nudge_size 1s linear 0s infinite alternate;
+                -moz-animation: nudge_size 1s linear 0s infinite alternate;
+                -o-animation: nudge_size 1s linear 0s infinite alternate;
+                animation: nudge_size 1s linear 0s infinite alternate;
+            }
+            
+            @-webkit-keyframes nudge_size { from { transform:scale(1); } to { transform:scale(3); }  }
+            @-moz-keyframes nudge_size { from { transform:scale(1); } to { transform:scale(3); }   }
+            @-o-keyframes nudge_size { from { transform:scale(1); } to { transform:scale(3); }   }
+            @keyframes nudge_size { from { transform:scale(1); } to { transform:scale(3); }   }
+            
+        </style>
+        
+    </head>
+    <body>
+        <div id="main">
+            <h1 id="heading" class="">MARCO</h1>    
+        </div>
+        
+        <script type="text/javascript">
+                    
+            var hText = document.getElementById("heading");
+            var words = ["MARCO", "COOL"];
+            var colors = ["ff0000:00ffff", "00ff00:ff00ff", "0000ff:ffff00"];
+            var i = 0;
+            var c = "";
+            var a = "";
+            var replaceText = function() {
+                
+                while (a == c)
+                {
+                    a = colors[Math.floor(Math.random() * colors.length)];
+                }
+                c = a;
+                
+                var b = a.split(":");
+                var r = Math.round(Math.random());
+                
+                hText.innerHTML = words[i];
+                document.title = words[i];
+                hText.style.color = "#" + b[r];
+                document.documentElement.style.backgroundColor = "#" + b[1-r];
+                
+                i += 1;
+                if (i > words.length - 1) i = 0;
+                
+                setTimeout(function() { 
+                    replaceText()
+                }, 2000);
+            }
+            hText.className = "nudge_size";
+            replaceText();
+            
+        </script>
+    </body>
 </html>
